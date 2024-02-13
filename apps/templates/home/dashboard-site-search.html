@@ -1,0 +1,251 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Search Eval Framework {% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<!-- Breadcrumb starts -->
+<div class="py-1">
+   <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+      <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+         <li class="breadcrumb-item">
+            <a href="#">
+               <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+               </svg>
+            </a>
+         </li>
+         <li class="breadcrumb-item"><a href="#">Enterprise Search</a></li>
+         <li class="breadcrumb-item"><a href="#">POC</a></li>
+         <li class="breadcrumb-item active" aria-current="page">Search eval framework</li>
+      </ol>
+   </nav>
+</div>
+<!-- Breadcrumb ends -->
+<!-- Tabs start -->
+<div class="container mt-0">
+<!-- Tab content -->
+<div class="tab-pane fade show active" id="tab0" role="tabpanel" aria-labelledby="tab0-tab">
+   <!-- Content for Tab 1 -->
+   <div class="master-div">
+      <div class="table-settings mb-3">
+         <div class="row justify-content-between align-items-center">
+            <div class="d-flex justify-content-between w-100 flex-wrap">
+               <div class="mb-3 mb-lg-0">
+                  <p class="mb-0 small pe-4">Hint: Enter search terms(s), for example argon, disposable respirators etc..</p>
+               </div>
+            </div>
+            <div class="py-2"></div>
+            <div class="table-settings mb-3">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-10 col-lg-9 d-md-flex">
+                        <div class="input-group me-2 me-lg-3 fmxw-1000">
+                            <span class="input-group-text">
+                                <svg class="icon icon-xs" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+                            <textarea class="form-control" name="keywords" value="{{ keywords }}" rows="1" id="keywords" placeholder="Enter comma separated keywords..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-3 col-lg-3 d-flex justify-content-start">
+                        <button type="button" class="btn btn-secondary execute-btn" id="airgas-Search" data-action="load">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-1">
+               <!-- Add the spinner here -->
+               <div class="loading-spinner">
+                  Loading&nbsp;<i class="fas fa-spinner fa-spin"></i>
+               </div>
+               <div class="row mb-4 ..."></div>
+                  <div class=" table-settings mb-3 shadow" id="result0">
+                     <table id="data0" class="display nowrap" cellspacing="0" width="100%">
+                     </table>
+                  </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Add more tab content divs as needed -->
+</div>
+</div>
+<!-- Tabs End -->
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+function airGasSearch(action) {
+    // Show loading spinner
+    $('.loading-spinner').show();
+    // Clear previous search results
+    clearSearchResults();
+    console.log(action);
+    // Get the value of the 'options' select element
+    var keywords = $('#keywords').val();
+    console.log(keywords);
+    // AJAX request to your Flask route
+    $.ajax({
+        type: 'POST',
+        url: '/airGas_Search',
+        data: {
+            action: action,
+            keywords: keywords
+        },
+        success: function (data) {
+            // Handle the success case
+            console.log("Success");
+            var searchResults = data.response_text;
+            // console.log('Result_Text:', resultText);
+            if (searchResults && searchResults.length > 0) {
+                console.log("There are search results");
+                // Process judgements and display them in the DataTable
+                // Iterate over each keyword and its results
+                searchResults.forEach(function(keyword_data, index) {
+                    // Create a unique ID for the DataTable
+                    var tableId = 'searchResults_' + index;
+                    // Create a table element
+                    // Create a table element
+                    var table = $('<table>').attr('id', tableId).addClass('display').css('width', '100%');
+
+                    // Create a container for caption, keyword name
+                    var captionContainer = $('<div>').addClass('caption-container btn');
+                    // Create a caption with the keyword
+                    var tableHeading = $('<h6>').text('Results for: ' + keyword_data.keyword).css('font-weight', '500');
+
+                    // Append caption, keyword name, and download button to the container
+                    captionContainer.append(tableHeading);
+                    // Append the container before the table
+                    $('#data0').append(captionContainer);
+
+                    // Append the table to the #result0
+                    $('#data0').append(table);
+
+                    // Initialize DataTable for the current keyword
+                    $(document).ready(function() {
+                        var dataTable = $('#' + tableId).DataTable({
+                            data: keyword_data.results,
+                            scrollX: true,
+                            columns: [
+                                { data: '#Position', orderable: true, searchable: true, title: "Position"},
+                                { data: 'Part#', orderable: true, searchable: true, title: "Airgas Part #"},
+                                { data: 'Product Name', orderable: true, searchable: true, title: "Product Name"},
+                            ],
+                            destroy: true,
+                            processing: true,
+                            language: {
+                                processing: '<div class="spinner-border text-primary" role="status"></div>',
+                            },
+                            lengthMenu: [[20, 40, 60, -1], [20, 40, 60, "All"]],
+                            columnDefs: [
+                                { targets: [1], className: 'nowrap' } // Apply nowrap class to the 2nd  column (index 1)
+                            ],
+                            dom: 'Bflrtip', // Include length menu (l) along with Bfrtip buttons
+                            buttons: [
+                                {
+                                    extend: 'copy',
+                                    text: 'Copy',
+                                    filename: keyword_data.keyword + '_report',
+                                    exportOptions: {
+                                        columns: [0, 1, 2]
+                                    }
+                                },
+                                {
+                                    extend: 'csv',
+                                    title: "Search report",
+                                    messageTop: keyword_data.keyword,
+                                    text: 'CSV',
+                                    filename: keyword_data.keyword + '_report',
+                                    exportOptions: {
+                                        columns: [0, 1, 2]
+                                    }
+                                },
+                                {
+                                    extend: 'excel',
+                                    title: "Search report",
+                                    messageTop: keyword_data.keyword,
+                                    text: 'Excel',
+                                    filename: keyword_data.keyword + '_report',
+                                    exportOptions: {
+                                        columns: [0, 1, 2]
+                                    }
+                                },
+                                {
+                                    extend: 'pdf',
+                                    title: "Search report",
+                                    messageTop: keyword_data.keyword,
+                                    text: 'PDF',
+                                    filename: keyword_data.keyword + '_report',
+                                    exportOptions: {
+                                        columns: [0, 1, 2]
+                                    }
+                                },
+                                {
+                                    extend: 'print',
+                                    text: 'Print',
+                                    filename: keyword_data.keyword + '_report',
+                                    exportOptions: {
+                                        columns: [0, 1, 2]
+                                    }
+                                }
+                            ],
+                            initComplete: function () {
+                                $('.loading-spinner').hide();
+                            },
+                            error: function (jqXHR) {
+                                alert('An error occurred during DataTable initialization.');
+                                console.log('Error:', jqXHR);
+                                $('.loading-spinner').hide();
+                            }
+                        });
+                    });
+
+                });
+            } else {
+                console.log('Upload Model failed');
+                $('#result0').html('<p>Search failed to execute. Contact Search Team for assistance.</p>');
+            }
+            // Hide loading spinner (in case the DataTable initComplete is not triggered)
+            $('.loading-spinner').hide();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Handle the error case
+            alert('An error occurred during the search.');
+            console.log('Error:', textStatus, errorThrown);
+            // Hide loading spinner
+            $('.loading-spinner').hide();
+        }
+    });
+}
+
+// Event handler for the execute button
+$('#airgas-Search').click(function () {
+    // Get the value of the keyword field
+    var keyword = $('#keywords').val();
+
+    // Check if the keyword is empty
+    if (keyword.trim() === '') {
+        // If empty, show an alert message
+        alert('Please enter at least one keyword.');
+        return false; // Prevent form submission
+    }
+
+    // If not empty, proceed with the search
+    console.log('airgas-Search clicked');
+    // Call the function to execute the search
+    airGasSearch('load');
+    // Expand the result div after each search execution
+    $("#result0").show();
+});
+
+function clearSearchResults() {
+    // Remove all tables inside the #data0 container
+    $('#data0').empty();
+}
+
+</script>
+{% endblock javascripts %}
+
