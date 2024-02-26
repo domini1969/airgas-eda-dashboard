@@ -33,18 +33,19 @@
             <div class="row mb-4 ..."></div>
             <div class="table-settings mb-3">
                <div class="row justify-content-between align-items-center">
-                    <div class="col-3 col-lg-3 d-md-flex">
+                  <div class="col-9 col-lg-9 d-md-flex">
                      <div class="input-group me-2 me-lg-4 fmxw-700">
                         <span>
-                            <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
-                            </svg>
+                           <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M3 2h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"></path>
+                           </svg>
                         </span>
-                        &nbsp;&nbsp;<div class="text-primary d-inline-flex align-items-center"> <h6 class="mb-2">User clicks data</h6> </div>
+                        &nbsp;&nbsp;<span class="text-decoration-underline">Search user clicks</span>
                      </div>
-                        <button type="button" class="btn btn-secondary execute-btn" id="load-UserClicks" data-action="load">Load</button>
-                    </div>
+                  </div>
+                  <div class="col-2 col-lg-3 d-flex justify-content-start">
+                     <button type="button" class="btn btn-secondary execute-btn" id="load-UserClicks" data-action="load">Execute</button>
+                  </div>
                </div>
                <div class="py-4">
                   <!-- Add the spinner here -->
@@ -53,7 +54,7 @@
                   </div>
                   <div class="row mb-4 ..."></div>
                   <div class="card card-body border-0 table-wrapper table-responsive">
-                        <table id="data" class="table table-hover" cellspacing="0">
+                        <table id="data" class="table table-hover" cellspacing="0" width="100%">
                         </table>
                   </div>
                </div>
@@ -67,31 +68,25 @@
             <!-- Add your Tab content here -->
             <!-- Step 2-->
             <div class="table-settings mb-3">
-            <form enctype="multipart/form-data" action='/plot' method="POST">
                <div class="row justify-content-between">
                   <div class="col-6 col-lg-6 d-md-flex">
-                  <div class="col-5 col-lg-5 d-md-flex">
-                     <div class="input-group me-2 me-lg-4 fmxw-700">
-                        <span>
-                            <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+                     <div class="input-group me-2 me-lg-4 fmxw-700 col-2">
+                        <button class="btn btn-sm btn-secondary me-2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
                                 <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
                             </svg>
-                        </span>
-                        &nbsp;&nbsp;<div class="text-primary d-inline-flex align-items-center"> <h6 class="mb-2">Choose an Analysis</h6> </div>
-                     </div>
-                  </div>
-
-                     <div class="input-group me-2 me-lg-4 fmxw-700 col-2">
-                        <select id="options" name="options" class="form-select fmxw-250 me-2 col-2" aria-label="Message select example">
-                            <option value="ctr_Analysis" {% if options=='ctr_Analysis' %} selected="selected"{% endif %}>CTR Analysis</option>
-                            <option value="search_PositionAnalysis" {% if options=='search_PositionAnalysis' %} selected="selected"{% endif %}>Search Position Analysis</option>
-                            <option value="ranksVSclicks" {% if options=='ranksVSclicks' %} selected="selected"{% endif %}>Rank vs. Clicks Analysis</option>
-                            <option value="Top_searched_keywords" {% if options=='Top_searched_keywords' %} selected="selected"{% endif %}>Top Searched Keywords</option>
+                            Choose an Analysis
+                        </button>
+                        <select id="options" name="options" class="form-select fmxw-200 me-2 col-2" aria-label="Message select example">
+                            <option value="All" {% if options=='All' %} selected="selected"{% endif %}>All</option>
+                            <option value="Report1" {% if options=='Report 1' %} selected="selected"{% endif %}>Report 1</option>
+                            <option value="Report2" {% if options=='Report 2' %} selected="selected"{% endif %}>Report 2</option>
+                            <option value="Report3" {% if options=='Report 3' %} selected="selected"{% endif %}>Report 3</option>
                         </select>
-                        <button type="submit" id="submit" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Run">Execute</button>
+
+                     <button type="button" class="btn btn-secondary execute-btn" id="load-Plot1" data-action="load">Execute</button>
                   </div>
-               </form>
                </div>
              <div class="py-4">
                   <!-- Add the spinner here -->
@@ -100,11 +95,11 @@
                   </div>
                   <div class="row mb-4 ..."></div>
                     <div class="card-body p-3">
-                        <div id="plot">
-                            {% if plot %}
-                                {{plot|safe}}
+                        <div id="plot1">
+                            {% if plot1 %}
+                                {{plot1|safe}}
                             {% else %}
-                                <p>No analysis plot available.</p>
+                                <p>No plot called plot1 available.</p>
                             {% endif %}
                         </div>
                     </div>
@@ -152,14 +147,14 @@ function loadUserClicks(action) {
                 var dataTable = $('#data').DataTable({
                     data: data.data,  // Assuming 'data' is the property name containing the data array
                     columns: [
-                          {data: 'date', type: 'date', orderable: true, searchable: true, title: "Date"},
+                          {data: 'date', orderable: true, searchable: true, title: "Date", "render": function(data, type)
+                                {return type === 'sort' ? data : moment(data).format('L');}},
                           {data: 'term', orderable: true, searchable: true, title: "Search Term"},
                           {data: 'sku', orderable: true, searchable: true, title: "Airgas Part#"},
                           {data: 'position', orderable: true, searchable: true, title: "Page:Position"},
                           {data: 'rank', orderable: true, searchable: true, title: "Rank"},
                           {data: 'clicks', orderable: true, searchable: true, title: "Total Clicks"},
                     ],
-                    columnDefs: [{targets: 0, type: 'date'}], // Specify the column index for the date column
                     destroy: true,  // Destroy the existing DataTable instance before creating a new one
                     processing: true,  // Show a processing indicator
                     language: {
@@ -217,9 +212,9 @@ function loadUserClicks(action) {
                         }
                     ],
                     oLanguage: {
-                      sSearch: 'Filter '
+                      sSearch: 'Filter Data '
                     },
-                    order: [[0, 'asc']],
+                    order: [[1, 'asc']],
                     sPaginationType: 'full_numbers',
                     initComplete: function () {
                         // Hide loading spinner on initialization complete
@@ -272,8 +267,7 @@ function clearResults() {
 }
 
 // Tab 2: [Report Tab]
-function plot(action) {
-    console.log("!!!!!!!!!!!!!!!!!!!!")
+function plot1(action) {
     // Show loading spinner
     $('.loading-spinner').show();
     // Clear previous results
@@ -282,21 +276,21 @@ function plot(action) {
     // AJAX request to your Flask route
     $.ajax({
         type: 'POST',
-        url: '/plot',
+        url: '/plot1',
         data: {
             action: action
         },
         success: function (data) {
             // Handle the success case
-            console.log("Success!!!");
+            console.log("Success");
             var plot = data.response;  // Use the correct property name
             console.log(plot)
             if (plot) {
                 console.log('Received encoded image for FP:', plot);
-                $('#plot').html(plot);
+                $('#plot1').html(plot);
             } else {
                 console.log('No encoded image received for plot.');
-                $('#plot').html('<p>No Pairwise Transformation Plot available for FP.</p>');
+                $('#plot1').html('<p>No Pairwise Transformation Plot available for FP.</p>');
             }
             // Hide loading spinner (in case the DataTable initComplete is not triggered)
             $('.loading-spinner').hide();
@@ -312,21 +306,17 @@ function plot(action) {
 }
 
 // Event handler for the execute button
-$('#submit').click(function (event) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
+$('#load-Plot1').click(function () {
     // Call the function to execute the search
-    console.log("inside click submit")
-    var selectedOption = $('#options').val();
-    console.log(selectedOption);
-    plot(selectedOption);
+    console.log("inside click load-Plot1")
+    plot1('load');
     // Expand the result div after each search execution
-    // $("#plot").show();
+    $("#plot1").show();
 });
 
 // Function to clear previous results
 function clearResults() {
-    $('#plot').empty();
+    $('#plot1').empty();
 }
 </script>
 {% endblock javascripts %}

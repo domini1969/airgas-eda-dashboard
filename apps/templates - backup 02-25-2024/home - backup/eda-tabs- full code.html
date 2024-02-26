@@ -1,0 +1,1161 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} EDA - User Clicks {% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<!-- Breadcrumb starts -->
+<div class="py-4">
+   <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+      <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+         <li class="breadcrumb-item">
+            <a href="#">
+               <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+               </svg>
+            </a>
+         </li>
+         <li class="breadcrumb-item"><a href="#">Exploratory Analysis</a></li>
+         <li class="breadcrumb-item"><a href="#">User Clicks</a></li>
+         <li class="breadcrumb-item active" aria-current="page">Reports</li>
+      </ol>
+   </nav>
+   <div class="d-flex justify-content-between w-100 flex-wrap">
+      <div class="mb-3 mb-lg-0">
+         <h7 class="h7">Exploratory Analysis - User Clicks</h7>
+      </div>
+   </div>
+</div>
+<!-- Breadcrumb ends -->
+
+<!-- Tabs start -->
+<div class="container mt-0">
+   <!-- Nav tabs -->
+   <ul class="nav nav-tabs" id="progressTabs" role="tablist">
+      <li class="nav-item">
+          <a class="nav-link d-inline-flex align-items-center" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">
+              <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+              Report 1
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link d-inline-flex align-items-center" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">
+              <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+              Report 2
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link d-inline-flex align-items-center" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab2" aria-selected="false">
+              <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+              Report 3
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link d-inline-flex align-items-center" id="tab4-tab" data-bs-toggle="tab" href="#tab4" role="tab" aria-controls="tab2" aria-selected="false">
+              <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+              Report 4
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link d-inline-flex align-items-center" id="tab5-tab" data-bs-toggle="tab" href="#tab5" role="tab" aria-controls="tab2" aria-selected="false">
+              <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+              Report 5
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link d-inline-flex align-items-center" id="tab6-tab" data-bs-toggle="tab" href="#tab6" role="tab" aria-controls="tab2" aria-selected="false">
+              <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+              Report 6
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link d-inline-flex align-items-center" id="tab7-tab" data-bs-toggle="tab" href="#tab7" role="tab" aria-controls="tab2" aria-selected="false">
+              <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+              Report 7
+          </a>
+      </li>
+
+      <!-- Add more tabs as needed -->
+   </ul>
+
+   <!-- Tab content -->
+   <div class="tab-content mt-2">
+      <!--<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab"> -->
+      <div class="tab-pane fade show" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+         <!-- Content for Tab 1 -->
+         <div class="master-div">
+            <div class="row mb-4 ..."></div>
+            <div class="table-settings mb-3">
+               <div class="row justify-content-between align-items-center">
+                  <div class="col-9 col-lg-9 d-md-flex">
+                     <div class="input-group me-2 me-lg-4 fmxw-700">
+                        <span>
+                           <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M3 2h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"></path>
+                           </svg>
+                           &nbsp;&nbsp;<b>Report 1.</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="text-decoration-underline">Load Search Sessions</span>
+                     </div>
+                     <select id="options" name="options" class="form-select fmxw-200 d-none d-md-inline" aria-label="Message select example 2">
+                     <option value="All" {% if options=='All' %} selected="selected"{% endif %}>All</option>
+                     <option value="blue ray" {% if options=='blue ray' %} selected="selected"{% endif %}>blue ray</option>
+                     <option value="bluray" {% if options=='bluray' %} selected="selected"{% endif %}>bluray</option>
+                     <option value="dryer" {% if options=='dryer' %} selected="selected"{% endif %}>dryer</option>
+                     </select>
+                  </div>
+                  <div class="col-2 col-lg-3 d-flex justify-content-start">
+                     <button type="button" class="btn btn-secondary execute-btn" id="report1" data-action="load">Execute</button>
+                  </div>
+               </div>
+               <div class="py-4">
+                  <span id="min" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                     <div class="table-settings mb-3" id="result">
+                        <table id="data" class="table table-hover">
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+         <!-- Content for Tab 2 -->
+         <div class="master-div">
+            <div class="row mb-4 ..."></div>
+            <!-- Add your Tab content here -->
+            <!-- Step 2-->
+            <div class="table-settings mb-3">
+               <div class="row justify-content-between align-items-center">
+                  <div class="col-9 col-lg-9 d-md-flex">
+                     <div class="input-group me-2 me-lg-4 fmxw-700">
+                        <span>
+                           <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M3 2h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"></path>
+                           </svg>
+                           &nbsp;&nbsp;<b>Report 2.</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="text-decoration-underline">Create judgment list for queries. [sessions_to_sdbn]</span>
+                     </div>
+                     <select id="optionsCJ" name="optionsCJ" class="form-select fmxw-200 d-none d-md-inline" aria-label="Message select example 2">
+                     <option value="All" {% if options=='All' %} selected="selected"{% endif %}>All</option>
+                     <option value="blue ray" {% if options=='blue ray' %} selected="selected"{% endif %}>blue ray</option>
+                     <option value="bluray" {% if options=='bluray' %} selected="selected"{% endif %}>bluray</option>
+                     <option value="dryer" {% if options=='dryer' %} selected="selected"{% endif %}>dryer</option>
+                     <option value="headphones" {% if options=='headphones' %} selected="selected"{% endif %}>headphones</option>
+                     <option value="ipad" {% if options=='ipad' %} selected="selected"{% endif %}>ipad</option>
+                     <option value="iphone" {% if options=='iphone' %} selected="selected"{% endif %}>iphone</option>
+                     <option value="kindle" {% if options=='kindle' %} selected="selected"{% endif %}>kindle</option>
+                     <option value="lcd tv" {% if options=='lcd tv' %} selected="selected"{% endif %}>lcd tv</option>
+                     <option value="macbook" {% if options=='macbook' %} selected="selected"{% endif %}>macbook</option>
+                     <option value="nook" {% if options=='nook' %} selected="selected"{% endif %}>nook</option>
+                     <option value="star trek" {% if options=='star trek' %} selected="selected"{% endif %}>star trek</option>
+                     <option value="star wars" {% if options=='star wars' %} selected="selected"{% endif %}>star wars</option>
+                     <option value="transformers dark of the moon" {% if options=='transformers dark of the moon' %} selected="selected"{% endif %}>transformers dark of the moon</option>
+                     </select>
+                  </div>
+                  <div class="col-2 col-lg-3 d-flex justify-content-start">
+                     <button type="button" class="btn btn-secondary execute-btn" id="create-Judgements" data-action="create">Execute</button>
+                  </div>
+               </div>
+               <div class="py-4">
+                  <span id="minCJ" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                     <div class="table-settings mb-3" id="resultCJ">
+                        <table id="dataCJ" class="table table-hover">
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+             <div class="py-4">
+                  <span id="minSDBN" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                     <div class="table-settings mb-3" id="resultSDBN">
+                        <table id="dataSDBN" class="table table-hover">
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+         <!-- Content for Tab 2 -->
+         <div class="master-div">
+            <div class="row mb-4 ..."></div>
+            <!-- Add your Tab content here -->
+            <!-- Step 3-->
+            <div class="table-settings mb-3">
+               <div class="row justify-content-between align-items-center">
+                  <div class="col-9 col-lg-9 d-md-flex">
+                     <div class="input-group me-2 me-lg-4 fmxw-700">
+                        <span>
+                           <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M3 2h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"></path>
+                           </svg>
+                           &nbsp;&nbsp;<b>Report 3.</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="text-decoration-underline">Log Features and Normalize Features</span>
+                     </div>
+                  </div>
+                  <div class="col-2 col-lg-3 d-flex justify-content-start">
+                     <button type="button" class="btn btn-secondary execute-btn" id="logNnorm-Features" data-action="logNnorm">Execute</button>
+                  </div>
+               </div>
+               <div class="py-4">
+                  <span id="minLog" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                  <div id="normFeatures_plots_container" style="display: flex;">
+                    <div id="normFeatures_plot" style="margin-right: 20px;">
+                        {% if encoded_image_NF %}
+                            <h5>Normalized Features Plot</h5>
+                            <img src="data:image/png;base64,{{ encoded_image_NF }}" alt="Normalized Features Plot" width="550" height="550">
+                        {% else %}
+                            <p>No Normalized Features Plot available.</p>
+                        {% endif %}
+                    </div>
+                  </div>
+                  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                     <div class="table-settings mb-3" id="resultLog">
+                        <table id="dataLog" class="table table-hover">
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+             <div class="py-4">
+                  <span id="minNorm" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                     <div class="table-settings mb-3" id="resultNorm">
+                        <table id="dataNorm" class="table table-hover">
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+
+
+ <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+    <!-- Content for Tab 2 -->
+    <div class="master-div">
+        <div class="row align-items-center mb-4">
+            <!-- Add your Tab content here -->
+            <div class="table-settings mb-1">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-sm btn-secondary me-2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                        </svg>
+                        Reports
+                    </button>
+                    <select id="options" name="options" class="form-select fmxw-200 me-2" aria-label="Message select example">
+                        <option value="All" {% if options=='All' %} selected="selected"{% endif %}>All</option>
+                        <option value="Report1" {% if options=='Report 1' %} selected="selected"{% endif %}>Report 1</option>
+                        <option value="Report2" {% if options=='Report 2' %} selected="selected"{% endif %}>Report 2</option>
+                        <option value="Report3" {% if options=='Report 3' %} selected="selected"{% endif %}>Report 3</option>
+                    </select>
+                    <button type="button" class="btn btn-sm btn-secondary me-2" id="load-Plot1" data-action="load">Execute</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-4">
+            <div class="row mt-1">
+                <div class="col-lg-12 mb-lg-0 mb-4">
+                    <div class="card z-index-2 h-100">
+                        <div class="card-header pb-0 pt-3 bg-transparent">
+                            <h6 class="text-capitalize">Searches and Clicks Over Time</h6>
+                            <p class="text-sm mb-0">
+                                <i class="fa fa-arrow-up text-success"></i>
+                                <span class="font-weight-bold">More</span> details..
+                            </p>
+                        </div>
+                        <div class="card-body p-3">
+                            <div id="plot1">
+                                {% if plot1 %}
+                                    {{plot1|safe}}
+                                {% else %}
+                                    <p>No plot called plot1 available.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+      <!-- Content for Tab 2 -->
+      <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+
+         <div class="master-div">
+            <div class="row mb-4 ..."></div>
+            <!-- Add your Tab content here -->
+            <!-- Step 5-->
+            <div class="table-settings mb-3">
+               <div class="row justify-content-between align-items-center">
+                  <div class="col-9 col-lg-9 d-md-flex">
+                     <div class="input-group me-2 me-lg-4 fmxw-700">
+                        <span>
+                           <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M3 2h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"></path>
+                           </svg>
+                           &nbsp;&nbsp;<b>Report 5.</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="text-decoration-underline">Train the Model</span>
+                     </div>
+                     <select id="optionsTM" name="optionsTM" class="form-select fmxw-200 d-none d-md-inline" aria-label="Message select example 2">
+                     <option value="All" {% if options=='All' %} selected="selected"{% endif %}>All</option>
+                     <option value="blue ray" {% if options=='blue ray' %} selected="selected"{% endif %}>blue ray</option>
+                     <option value="bluray" {% if options=='bluray' %} selected="selected"{% endif %}>bluray</option>
+                     <option value="dryer" {% if options=='dryer' %} selected="selected"{% endif %}>dryer</option>
+                     <option value="headphones" {% if options=='headphones' %} selected="selected"{% endif %}>headphones</option>
+                     <option value="ipad" {% if options=='ipad' %} selected="selected"{% endif %}>ipad</option>
+                     <option value="iphone" {% if options=='iphone' %} selected="selected"{% endif %}>iphone</option>
+                     <option value="kindle" {% if options=='kindle' %} selected="selected"{% endif %}>kindle</option>
+                     <option value="lcd tv" {% if options=='lcd tv' %} selected="selected"{% endif %}>lcd tv</option>
+                     <option value="macbook" {% if options=='macbook' %} selected="selected"{% endif %}>macbook</option>
+                     <option value="nook" {% if options=='nook' %} selected="selected"{% endif %}>nook</option>
+                     <option value="star trek" {% if options=='star trek' %} selected="selected"{% endif %}>star trek</option>
+                     <option value="star wars" {% if options=='star wars' %} selected="selected"{% endif %}>star wars</option>
+                     <option value="transformers dark of the moon" {% if options=='transformers dark of the moon' %} selected="selected"{% endif %}>transformers dark of the moon</option>
+                     </select>
+                  </div>
+                  <div class="col-2 col-lg-3 d-flex justify-content-start">
+                     <button type="button" class="btn btn-secondary execute-btn" id="train-Model" data-action="create">Train</button>
+                  </div>
+               </div>
+               <div class="py-4">
+                  <span id="minTM" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                 <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                    <div id="resultTM"></div>
+                 </div>
+               </div>
+            </div>
+
+            </div>
+
+         </div>
+      <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+         <!-- Content for Tab 2 -->
+         <div class="master-div">
+            <div class="row mb-4 ..."></div>
+            <!-- Add your Tab content here -->
+            <!-- Step 2-->
+            <div class="table-settings mb-3">
+               <div class="row justify-content-between align-items-center">
+                  <div class="col-9 col-lg-9 d-md-flex">
+                     <div class="input-group me-2 me-lg-4 fmxw-700">
+                        <span>
+                           <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M3 2h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"></path>
+                           </svg>
+                           &nbsp;&nbsp;<b>Report 6.</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="text-decoration-underline">Upload the Model</span>
+                     </div>
+                   </div>
+                  <div class="col-2 col-lg-3 d-flex justify-content-start">
+                     <button type="button" class="btn btn-secondary execute-btn" id="upload-Model" data-action="create">upload</button>
+                  </div>
+               </div>
+               <div class="py-4">
+                  <span id="minUM" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                     <div class="table-settings mb-3" id="resultUM">
+                        <table id="dataUM" class="table table-hover">
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         </div>
+      <div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
+         <!-- Content for Tab 2 -->
+         <div class="master-div">
+            <div class="row mb-4 ..."></div>
+            <!-- Add your Tab content here -->
+            <!-- Step 2-->
+            <div class="table-settings mb-3">
+               <div class="row justify-content-between align-items-center">
+                  <div class="col-9 col-lg-9 d-md-flex">
+                     <div class="input-group me-2 me-lg-4 fmxw-700">
+                        <span>
+                           <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M3 2h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"></path>
+                           </svg>
+                           &nbsp;&nbsp;<b>Report 7.</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="text-decoration-underline">Test Drive!</span>
+                     </div>
+                  </div>
+                  <div class="col-2 col-lg-3 d-flex justify-content-start">
+                     <button type="button" class="btn btn-secondary execute-btn" id="test-Drive" data-action="create">Execute</button>
+                  </div>
+               </div>
+               <div class="py-4">
+                  <span id="minCJ" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  Results</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+                  <div class="card card-body border-0 shadow table-wrapper table-responsive">
+                     <div class="table-settings mb-3" id="resultCJ">
+                        <table id="dataCJ" class="table table-hover">
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+             <div class="py-4">
+                  <span id="minCJ" style="cursor:pointer;">
+                  <a href="#" class="text-indigo">
+                  ResultsA</a>
+                  </span>
+                  <!-- Add the spinner here -->
+                  <div class="loading-spinner">
+                     <i class="fas fa-spinner fa-spin"></i> Loading...
+                  </div>
+                  <div class="row mb-4 ..."></div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+      <!-- Add more tab content divs as needed -->
+   </div>
+<!-- Tabs End -->
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+
+// Step 4: [Function to do Plot 1]
+function plot1(action) {
+    // Show loading spinner
+    $('.loading-spinner').show();
+    // Clear previous results
+    clearResults();
+    console.log(action)
+    // AJAX request to your Flask route
+    $.ajax({
+        type: 'POST',
+        url: '/plot1',
+        data: {
+            action: action
+        },
+        success: function (data) {
+            // Handle the success case
+            console.log("Success");
+            var plot = data.response;  // Use the correct property name
+            console.log(plot)
+            if (plot) {
+                console.log('Received encoded image for FP:', plot);
+                $('#plot1').html(plot);
+            } else {
+                console.log('No encoded image received for plot.');
+                $('#plot1').html('<p>No Pairwise Transformation Plot available for FP.</p>');
+            }
+            // Hide loading spinner (in case the DataTable initComplete is not triggered)
+            $('.loading-spinner').hide();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Handle the error case
+            alert('An error occurred during the search.');
+            console.log('Error:', textStatus, errorThrown);
+            // Hide loading spinner
+            $('.loading-spinner').hide();
+        }
+    });
+}
+
+// Event handler for the execute button
+$('#load-Plot1').click(function () {
+    // Call the function to execute the search
+    console.log("inside click load-Plot1")
+    plot1('load');
+    // Expand the result div after each search execution
+    $("#plot1").show();
+});
+
+$('#minPT').click(function(){
+ $("#plot1").toggle(10);
+});
+
+// Function to clear previous results
+function clearResults() {
+    $('#plot1').empty();
+}
+
+// Step: 1 [Function to load the User Sessions]
+function loadSessions(action) {
+    // Show loading spinner
+    $('.loading-spinner').show();
+    // Clear previous results
+    clearResults();
+    console.log(action)
+    // Get the value of the 'options' select element
+    var optionsValue = $('#options').val();
+    console.log(optionsValue)
+    // AJAX request to your Flask route
+    $.ajax({
+        type: 'POST',
+        url: '/load_Sessions',
+        data: {
+            action: action,
+            options: optionsValue
+        },
+        success: function (data) {
+            // Handle the success case
+            console.log("Success");
+            // Initialize DataTable only when there is data
+            if (data && data.data && data.data.length > 0) {
+                console.log("There are Sessions..");
+                // Initialize DataTable only when there is data
+                var dataTable = $('#data').DataTable({
+                    data: data.data,  // Assuming 'data' is the property name containing the data array
+                    columns: [
+                          {data: 'query', orderable: true, searchable: true, title: "Query"},
+                          {data: 'sess_id', orderable: true, searchable: true, title: "Session Id"},
+                          {data: 'doc_id', orderable: true, searchable: true, title: "Doc Id"},
+                          {data: 'clicked', orderable: true, searchable: true, title: "Clicked"},
+                          {data: 'rank', orderable: true, searchable: true, title: "Rank"},
+                    ],
+                    destroy: true,  // Destroy the existing DataTable instance before creating a new one
+                    processing: true,  // Show a processing indicator
+                    language: {
+                        processing: '<div class="spinner-border text-primary" role="status"></div>',
+                    },
+                    initComplete: function () {
+                        // Hide loading spinner on initialization complete
+                        $('.loading-spinner').hide();
+                    },
+                    error: function (jqXHR) {
+                        // Handle the error case
+                        alert('An error occurred during DataTable initialization.');
+                        console.log('Error:', jqXHR);
+                        // Hide loading spinner
+                        $('.loading-spinner').hide();
+                    }
+                });
+
+                // Optionally, you can bind an event handler to the DataTable for further customization
+                dataTable.on('draw', function () {
+                    console.log('Sessions Table redrawing...');
+                });
+
+                // Optionally, you can apply additional logic based on your requirements
+                // displayResults(data);
+            } else {
+                // If there is no data, you can handle it accordingly
+                console.log('No sessions data to display.');
+            }
+            // Hide loading spinner (in case the DataTable initComplete is not triggered)
+            $('.loading-spinner').hide();
+        },
+        error: function (jqXHR) {
+            // Handle the error case
+            alert('An error occurred during the search.');
+            console.log('Error:', jqXHR);
+            // Hide loading spinner
+            $('.loading-spinner').hide();
+        }
+    });
+}
+
+// Event handler for the execute button
+$('#load-Sessions').click(function () {
+    // Call the function to execute the search
+    loadSessions('load');
+    // Expand the result div after each search execution
+    $("#result").show();
+});
+
+$('#min').click(function(){
+ $("#result").toggle(10);
+});
+
+// Function to clear previous results
+function clearResults() {
+    $('#data').empty();
+}
+
+// Step: 2 [Function to create Judgements from previous User Sessions]
+function createJudgements(action) {
+    // Show loading spinner
+    $('.loading-spinner-cj').show();
+    // Clear previous results
+    clearResultsCJ();
+    clearResultsSDBN();
+    console.log(action)
+    // Get the value of the 'options' select element
+    var optionsValue = $('#optionsCJ').val();
+    console.log(optionsValue)
+// AJAX request to your Flask route
+$.ajax({
+    type: 'POST',
+    url: '/create_Judgements',
+    data: {
+        actionCJ: action,
+        optionsCJ: optionsValue
+    },
+    success: function (response) {
+        // Handle the success case
+        console.log("Success");
+        var judgements = response.judgements;
+        var sdbn = response.sdbn;
+        // Initialize DataTable only when there is data
+        if (judgements && judgements.length > 0) {
+            console.log("There are Judgements..");
+            // Process judgements and display them in the DataTable
+            var dataTable = $('#dataCJ').DataTable({
+                data: judgements,
+                columns: [
+                    { data: 'grade', orderable: true, searchable: true, title: "Grade"},
+                    { data: 'qid' , orderable: true, searchable: true, title: "Qid"},
+                    { data: 'keywords', orderable: true, searchable: true, title: "Key Words"},
+                    { data: 'doc_id' , orderable: true, searchable: true, title: "Doc_Id"},
+                    { data: 'features' , orderable: true, searchable: true, title: "Features"},
+                    { data: 'weight' , orderable: true, searchable: true, title: "Weight"},
+                ],
+                destroy: true,  // Destroy the existing DataTable instance before creating a new one
+                processing: true,  // Show a processing indicator
+                language: {
+                    processing: '<div class="spinner-border text-primary" role="status"></div>',
+                },
+                initComplete: function () {
+                    // Hide loading spinner on initialization complete
+                    $('.loading-spinner').hide();
+                },
+                error: function (jqXHR) {
+                    // Handle the error case
+                    alert('An error occurred during DataTable initialization.');
+                    console.log('Error:', jqXHR);
+                    // Hide loading spinner
+                    $('.loading-spinner').hide();
+                }
+            });
+
+            // Optionally, you can bind an event handler to the DataTable for further customization
+            dataTable.on('draw', function () {
+                console.log('Judgements Table redrawing...');
+            });
+
+                // Optionally, you can apply additional logic based on your requirements
+                // displayResults(data);
+        } else {
+            // If there is no data, you can handle it accordingly
+            console.log('No Judgements data to display.');
+        }
+
+        // Initialize SDBN DataTable only when there is SDBN data
+        if (sdbn && sdbn.length > 0) {
+            console.log("There is SDBN data..");
+            // Process sdbn and display it in the SDBN DataTable
+            var sdbnDataTable = $('#dataSDBN').DataTable({
+                data: sdbn,
+                columns: [
+                     { data: 'doc_id', orderable: true, searchable: true, title: "doc_id"},
+                     { data: 'clicked', orderable: true, searchable: true, title: "clicked"},
+                     { data: 'examined', orderable: true, searchable: true, title: "examined"},
+                     { data: 'grade', orderable: true, searchable: true, title: "grade"},
+                     { data: 'prior_a', orderable: true, searchable: true, title: "prior_a"},
+                     { data: 'prior_b', orderable: true, searchable: true, title: "prior_b"},
+                     { data: 'posterior_a', orderable: true, searchable: true, title: "posterior_a"},
+                     { data: 'posterior_b', orderable: true, searchable: true, title: "posterior_b"},
+                     { data: 'beta_grade', orderable: true, searchable: true, title: "beta_grade"},
+                    // Define columns for the SDBN DataTable based on your data structure
+                    // Example: { data: 'column_name', orderable: true, searchable: true, title: "Column Title"},
+                ],
+                destroy: true,
+                processing: true,
+                language: {
+                    processing: '<div class="spinner-border text-primary" role="status"></div>',
+                },
+                initComplete: function () {
+                    // Hide loading spinner on initialization complete
+                    $('.loading-spinner-sdbn').hide();
+                },
+                error: function (jqXHR) {
+                    // Handle the error case
+                    alert('An error occurred during SDBN DataTable initialization.');
+                    console.log('Error:', jqXHR);
+                    // Hide loading spinner
+                    $('.loading-spinner-sdbn').hide();
+                }
+            });
+
+            // Optionally, you can bind an event handler to the SDBN DataTable for further customization
+            sdbnDataTable.on('draw', function () {
+                console.log('SDBN Table redrawing...');
+            });
+        } else {
+            // If there is no SDBN data, you can handle it accordingly
+            console.log('No SDBN data to display.');
+        }
+        // Hide loading spinner (in case the DataTable initComplete is not triggered)
+        $('.loading-spinner-cj').hide();
+    },
+    error: function (jqXHR) {
+        // Handle the error case
+        alert('An error occurred during the search.');
+        console.log('Error:', jqXHR);
+        // Hide loading spinner
+        $('.loading-spinner-cj').hide();
+    }
+});
+
+}
+
+// Event handler for the execute button
+$('#create-Judgements').click(function () {
+    // Call the function to execute the search
+    createJudgements('create');
+    // Expand the result div after each search execution
+    $("#resultCJ").show();
+    $("#resultSDBN").show();
+});
+
+$('#minCJ').click(function(){
+ $("#resultCJ").toggle(10);
+});
+
+$('#minSDBN').click(function(){
+ $("#resultSDBN").toggle(10);
+});
+
+// Function to clear previous results
+function clearResultsCJ() {
+    $('#dataCJ').empty();
+}
+
+// Function to clear previous results
+function clearResultsSDBN() {
+    $('#dataSDBN').empty();
+}
+
+// Step: 2 [Log and Normalize features]
+function logNormFeatures(action) {
+    // Show loading spinner
+    $('.loading-spinner-cj').show();
+    // Clear previous results
+    clearResultsCJ();
+    clearResultsSDBN();
+    console.log(action)
+    // Get the value of the 'options' select element
+    var optionsValue = $('#optionsCJ').val();
+    console.log(optionsValue)
+// AJAX request to your Flask route
+$.ajax({
+    type: 'POST',
+    url: '/logNnorm_Features',
+    data: {
+        actionCJ: action,
+        optionsCJ: optionsValue
+    },
+    success: function (response) {
+        // Handle the success case
+        console.log("Success");
+        var serialized_logged_judgments = response.serialized_logged_judgments;
+        var serialized_normed_judgments = response.serialized_normed_judgments;
+        var encoded_image_NF = response.encoded_image_NF
+        // Initialize DataTable only when there is data
+        if (encoded_image_NF) {
+                console.log('Received encoded image for FP:', encoded_image_NF);
+                $('#normFeatures_plot').html('<img src="data:image/png;base64,' + encoded_image_NF + '" alt="Normalized Features Plot" width="500" height="400">');
+        } else {
+            console.log('No encoded image received for FP.');
+            $('#normFeatures_plot').html('<p>No Pairwise Transformation Plot available.</p>');
+        }
+        if (serialized_logged_judgments && serialized_logged_judgments.length > 0) {
+            console.log("There are Logged Judgements..");
+            // Process judgements and display them in the DataTable
+            var LogdataTable = $('#dataLog').DataTable({
+                data: serialized_logged_judgments,
+                columns: [
+                    { data: 'grade', orderable: true, searchable: true, title: "Grade"},
+                    { data: 'qid' , orderable: true, searchable: true, title: "Qid"},
+                    { data: 'keywords', orderable: true, searchable: true, title: "Key Words"},
+                    { data: 'doc_id' , orderable: true, searchable: true, title: "Doc_Id"},
+                    { data: 'features' , orderable: true, searchable: true, title: "Features"},
+                    { data: 'weight' , orderable: true, searchable: true, title: "Weight"},
+                ],
+                destroy: true,  // Destroy the existing DataTable instance before creating a new one
+                processing: true,  // Show a processing indicator
+                language: {
+                    processing: '<div class="spinner-border text-primary" role="status"></div>',
+                },
+                initComplete: function () {
+                    // Hide loading spinner on initialization complete
+                    $('.loading-spinner').hide();
+                },
+                error: function (jqXHR) {
+                    // Handle the error case
+                    alert('An error occurred during DataTable initialization.');
+                    console.log('Error:', jqXHR);
+                    // Hide loading spinner
+                    $('.loading-spinner').hide();
+                }
+            });
+
+            // Optionally, you can bind an event handler to the DataTable for further customization
+            LogdataTable.on('draw', function () {
+                console.log('Logged Judgement Table redrawing...');
+            });
+
+                // Optionally, you can apply additional logic based on your requirements
+                // displayResults(data);
+        } else {
+            // If there is no data, you can handle it accordingly
+            console.log('No Logged Judgement data to display.');
+        }
+
+        // Initialize serialized_normed_judgments DataTable only when there is serialized_normed_judgments data
+        if (serialized_normed_judgments && serialized_normed_judgments.length > 0) {
+            console.log("There are Normed Judgement data..");
+            // Process sdbn and display it in the SDBN DataTable
+            var NormDataTable = $('#dataNorm').DataTable({
+                data: serialized_normed_judgments,
+                columns: [
+                    { data: 'grade', orderable: true, searchable: true, title: "Grade"},
+                    { data: 'qid' , orderable: true, searchable: true, title: "Qid"},
+                    { data: 'keywords', orderable: true, searchable: true, title: "Key Words"},
+                    { data: 'doc_id' , orderable: true, searchable: true, title: "Doc_Id"},
+                    { data: 'features' , orderable: true, searchable: true, title: "Features"},
+                    { data: 'weight' , orderable: true, searchable: true, title: "Weight"},
+                ],
+                destroy: true,
+                processing: true,
+                language: {
+                    processing: '<div class="spinner-border text-primary" role="status"></div>',
+                },
+                initComplete: function () {
+                    // Hide loading spinner on initialization complete
+                    $('.loading-spinner-sdbn').hide();
+                },
+                error: function (jqXHR) {
+                    // Handle the error case
+                    alert('An error occurred during SDBN DataTable initialization.');
+                    console.log('Error:', jqXHR);
+                    // Hide loading spinner
+                    $('.loading-spinner-sdbn').hide();
+                }
+            });
+
+            // Optionally, you can bind an event handler to the SDBN DataTable for further customization
+            NormDataTable.on('draw', function () {
+                console.log('Normalized Judgements Table redrawing...');
+            });
+        } else {
+            // If there is no Norm data, you can handle it accordingly
+            console.log('No Normalized Judgements data to display.');
+        }
+        // Hide loading spinner (in case the DataTable initComplete is not triggered)
+        $('.loading-spinner-cj').hide();
+    },
+    error: function (jqXHR) {
+        // Handle the error case
+        alert('An error occurred during the search.');
+        console.log('Error:', jqXHR);
+        // Hide loading spinner
+        $('.loading-spinner-cj').hide();
+    }
+});
+
+}
+
+// Event handler for the execute button
+$('#logNnorm-Features').click(function () {
+    // Call the function to execute the search
+    logNormFeatures('create');
+    // Expand the result div after each search execution
+    $("#resultLog").show();
+    $("#resultNorm").show();
+});
+
+$('#minLog').click(function(){
+ $("#resultLog").toggle(10);
+});
+
+$('#minNorm').click(function(){
+ $("#resultNorm").toggle(10);
+});
+
+// Function to clear previous results
+function clearResultsLog() {
+    $('#dataLog').empty();
+}
+
+// Function to clear previous results
+function clearResultsNorm() {
+    $('#dataNorm').empty();
+}
+
+// Step 4: [Function to do Pairwise Transformation]
+function pairwiseTransform(action) {
+    // Show loading spinner
+    $('.loading-spinner').show();
+    // Clear previous results
+    clearResults();
+    console.log(action)
+    // AJAX request to your Flask route
+    $.ajax({
+        type: 'POST',
+        url: '/pairwise_Transform',
+        data: {
+            action: action
+        },
+        success: function (data) {
+            // Handle the success case
+            console.log("Success");
+            var encoded_image_FP = data.encoded_image_FP;  // Use the correct property name
+            var encoded_image_FDPD = data.encoded_image_FDPD;  // Use the correct property name
+            if (encoded_image_FP) {
+                console.log('Received encoded image for FP:', encoded_image_FP);
+                $('#pairwise_plot_FP').html('<img src="data:image/png;base64,' + encoded_image_FP + '" alt="Pairwise Transformation Plot FP" width="500" height="400">');
+            } else {
+                console.log('No encoded image received for FP.');
+                $('#pairwise_plot_FP').html('<p>No Pairwise Transformation Plot available for FP.</p>');
+            }
+            if (encoded_image_FDPD) {
+                console.log('Received encoded image for FDPD:', encoded_image_FDPD);
+                $('#pairwise_plot_FDPD').html('<img src="data:image/png;base64,' + encoded_image_FDPD + '" alt="Pairwise Transformation Plot FDPD" width="500" height="400">');
+            } else {
+                console.log('No encoded image received for FDPD.');
+                $('#pairwise_plot_FDPD').html('<p>No Pairwise Transformation Plot available for FDPD.</p>');
+            }
+            // Hide loading spinner (in case the DataTable initComplete is not triggered)
+            $('.loading-spinner').hide();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Handle the error case
+            alert('An error occurred during the search.');
+            console.log('Error:', textStatus, errorThrown);
+            // Hide loading spinner
+            $('.loading-spinner').hide();
+        }
+    });
+}
+
+// Event handler for the execute button
+$('#pairwise-Transform').click(function () {
+    // Call the function to execute the search
+    pairwiseTransform('load');
+    // Expand the result div after each search execution
+    $("#pairwise_plot").show();
+});
+
+$('#minPT').click(function(){
+ $("#pairwise_plot").toggle(10);
+});
+
+// Function to clear previous results
+function clearResults() {
+    $('#pairwise_plot').empty();
+}
+
+// Step 5: [Train your Model]
+function trainModel(action) {
+    // Show loading spinner
+    $('.loading-spinner').show();
+    // Clear previous results
+    clearResults();
+    console.log(action)
+    // AJAX request to your Flask route
+    $.ajax({
+        type: 'POST',
+        url: '/train_Model',
+        data: {
+            action: action
+        },
+        success: function (data) {
+            // Handle the success case
+            console.log("Success");
+            var svm_model_list = data.svm_model;
+            console.log('svm_model_list:', svm_model_list);
+            if (svm_model_list) {
+                console.log('svm_model_list if not null:', svm_model_list);
+                // Construct HTML for displaying the model list
+                var html = '<p>SVM Model:';
+                for (var i = 0; i < svm_model_list.length; i++) {
+                    // Concatenate the values in the inner loop
+                    var innerHtml = '[';
+                    for (var j = 0; j < svm_model_list[i].length; j++) {
+                        innerHtml += svm_model_list[i][j];
+                        // Add a comma if it's not the last element
+                        if (j < svm_model_list[i].length - 1) {
+                            innerHtml += ', ';
+                        }
+                    }
+                    innerHtml += ']';
+                    html += innerHtml + '</p>';
+                }
+                $('#resultTM').html(html);
+            } else {
+                console.log('Model training failed');
+                $('#resultTM').html('<p>Model training failed</p>');
+            }
+            // Hide loading spinner (in case the DataTable initComplete is not triggered)
+            $('.loading-spinner').hide();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Handle the error case
+            alert('An error occurred during the search.');
+            console.log('Error:', textStatus, errorThrown);
+            // Hide loading spinner
+            $('.loading-spinner').hide();
+        }
+    });
+}
+
+// Event handler for the execute button
+$('#train-Model').click(function () {
+    // Call the function to execute the search
+    trainModel('load');
+    // Expand the result div after each search execution
+    $("#resultTM").show();
+});
+
+$('#minTM').click(function(){
+ $("#resultTM").toggle(10);
+});
+
+// Function to clear previous results
+function clearResults() {
+    $('#resultTM').empty();
+}
+
+// Step 6: [Upload Model]
+function uploadModel(action) {
+    // Show loading spinner
+    $('.loading-spinner').show();
+    // Clear previous results
+    clearResults();
+    console.log(action);
+    // AJAX request to your Flask route
+    $.ajax({
+        type: 'POST',
+        url: '/upload_Model',
+        data: {
+            action: action
+        },
+        success: function (data) {
+            // Handle the success case
+            console.log("Success");
+            var resultText = data.response_text;
+            console.log('Result_Text:', resultText);
+            if (resultText) {
+                console.log('Result_Text if not null:', resultText);
+                // Construct HTML for displaying the Result_Text
+                var html = '<p>Status: <pre>' + JSON.stringify(resultText, null, 2) + '</pre></p>';
+                $('#resultUM').html(html);
+            } else {
+                console.log('Upload Model failed');
+                $('#resultUM').html('<p>Upload Model failed</p>');
+            }
+                        // Hide loading spinner (in case the DataTable initComplete is not triggered)
+            $('.loading-spinner').hide();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Handle the error case
+            alert('An error occurred during the search.');
+            console.log('Error:', textStatus, errorThrown);
+            // Hide loading spinner
+            $('.loading-spinner').hide();
+        }
+    });
+}
+
+
+// Event handler for the execute button
+$('#upload-Model').click(function () {
+    // Call the function to execute the search
+    uploadModel('load');
+    // Expand the result div after each search execution
+    $("#resultUM").show();
+});
+
+$('#minUM').click(function(){
+ $("#resultUM").toggle(10);
+});
+
+// Function to clear previous results
+function clearResults() {
+    $('#resultUM').empty();
+}
+
+</script>
+{% endblock javascripts %}

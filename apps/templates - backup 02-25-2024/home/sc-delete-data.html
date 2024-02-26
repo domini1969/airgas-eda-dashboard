@@ -1,0 +1,124 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Search Eval Framework {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+    .status-card {
+        display: none; /* Initially hide the card */
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<!-- Breadcrumb starts -->
+<div class="py-1">
+   <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+      <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+         <li class="breadcrumb-item">
+            <a href="#">
+               <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+               </svg>
+            </a>
+         </li>
+         <li class="breadcrumb-item"><a href="#">Enterprise Search</a></li>
+         <li class="breadcrumb-item"><a href="#">POC</a></li>
+         <li class="breadcrumb-item active" aria-current="page">Search eval framework</li>
+      </ol>
+   </nav>
+</div>
+<!-- Breadcrumb ends -->
+
+<!-- Main content section -->
+<div class="container mt-0">
+    <!-- Tab content -->
+    <div class="tab-pane fade show active" id="tab0" role="tabpanel" aria-labelledby="tab0-tab">
+       <!-- Content for Tab 1 -->
+       <div class="master-div">
+          <div class="table-settings mb-3">
+             <div class="row justify-content-between align-items-center">
+                <div class="d-flex justify-content-between w-100 flex-wrap">
+                   <div class="mb-3 mb-lg-0">
+                      <p class="mb-0 small pe-4">Warning. This will wipe the existing solr data.</p>
+                   </div>
+                </div>
+                <div class="py-2"></div>
+                <div class="table-settings mb-3">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-3 col-lg-3 d-flex justify-content-start">
+                            <button type="button" class="btn btn-secondary execute-btn" id="airgas-Delete" data-action="load">Delete</button>
+                        </div>
+                    </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- Add more tab content divs as needed -->
+    </div>
+    <!-- Tab content ends -->
+
+    <!-- Add the spinner here -->
+    <div class="loading-spinner" style="display: none;">
+        Loading&nbsp;<i class="fas fa-spinner fa-spin"></i>
+    </div>
+    <!-- Card for displaying search results -->
+    <div class="row justify-content-center mt-4 status-card">
+        <div class="col-lg-4">
+            <div class="breadcrumb-item">
+                <div class="breadcrumb-item">
+                    <div class="breadcrumb-item"><b>Status: </b><div id="status"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card ends -->
+</div>
+<!-- Main content section ends -->
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    // Function to perform deletion
+    function deleteAirgas() {
+        // Hide the status card
+        $('.status-card').hide();
+        // Show loading spinner
+        $('.loading-spinner').show();
+
+        // AJAX request to delete_Airgas route
+        $.ajax({
+            type: 'POST',
+            url: '/delete_Airgas',
+            data: {
+                action: 'delete' // Assuming 'delete' is the action parameter value
+            },
+            success: function (response) {
+                // Handle the success case
+                if (response.success) {
+                    $('#status').html('<div class="text-center text-success">' + response.success + '</div>');
+                } else {
+                    $('#status').html('<div class="text-center text-danger">' + response.error + '</div>');
+                }
+                $('.loading-spinner').hide();
+                $('.status-card').show(); // Show the card with delete solr data status.
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // Handle the error case
+                $('#status').html('<div class="text-center text-danger">Error occurred while deleting documents.</div>');
+                console.error('Error:', textStatus, errorThrown);
+                $('.loading-spinner').hide();
+            }
+        });
+    }
+
+    // Event handler for the execute button
+    $('#airgas-Delete').click(function () {
+        console.log('airgas-Delete clicked');
+        // Call the function to execute the deletion
+        deleteAirgas();
+    });
+</script>
+{% endblock javascripts %}

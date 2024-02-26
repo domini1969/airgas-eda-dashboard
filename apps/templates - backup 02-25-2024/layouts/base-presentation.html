@@ -1,33 +1,26 @@
 <!--
-
 =========================================================
 * Airgas EDA Dashboard
 =========================================================
-
 * Product Page: https://domini.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard
 * Copyright 2021 Themesberg (https://www.themesberg.com)
-* License (https://domini.com/licensing)
-
 * Designed and coded by https://domini.com
-
 =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
-
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal. Contact us if you want to remove it.
 -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- Primary Meta Tags -->
 
+<!-- Primary Meta Tags -->
 <title>
     Airgas Enterprise Search - {% block title %}{% endblock %} | Airgas
 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="Volt - Premium Bootstrap 5 Dashboard">
+<meta name="title" content="Volt Pro - Premium Bootstrap 5 Admin Dashboard">
 <meta name="author" content="Themesberg">
 <meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
 <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
@@ -36,14 +29,14 @@
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://demo.themesberg.com/volt-pro">
-<meta property="og:title" content="Volt - Premium Bootstrap 5 Dashboard">
+<meta property="og:title" content="Volt Pro - Premium Bootstrap 5 Admin Dashboard">
 <meta property="og:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
 <meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
-<meta property="twitter:title" content="Volt - Premium Bootstrap 5 Dashboard">
+<meta property="twitter:title" content="Volt Pro - Premium Bootstrap 5 Admin Dashboard">
 <meta property="twitter:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
 <meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
 
@@ -56,8 +49,6 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-...your-integrity-code-here..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <link type="text/css" href="/static/assets/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 <link type="text/css" href="/static/assets/vendor/notyf/notyf.min.css" rel="stylesheet">
 <link type="text/css" href="/static/assets/vendor/fullcalendar/main.min.css" rel="stylesheet">
@@ -69,40 +60,22 @@
 <!-- Volt CSS -->
 <link type="text/css" href="/static/assets/css/volt.min.css" rel="stylesheet">
 
-<link type="text/css" href="/static/assets/css/custom.css" rel="stylesheet">
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 <body>
 
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="/">
-            <img class="navbar-brand-dark" src="/static/assets/img/brand/light.svg" alt="Volt logo" /> <img class="navbar-brand-light" src="/static/assets/img/brand/dark.svg" alt="Volt logo" />
-        </a>
-        <div class="d-flex align-items-center">
-            <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
+  {% include 'includes/navigation-presentation.html' %}
 
-    {% include 'includes/sidebar.html' %}
+  {% block content %}{% endblock content %}
 
-    <main class="content">
+  {% include 'includes/footer-presentation.html' %}
 
-        {% include 'includes/navigation.html' %}
+  {% include 'includes/scripts.html' %}
 
-        {% block content %}{% endblock content %}
-
-        {% include 'includes/footer.html' %}             
-
-    </main>
-
-    {% include 'includes/scripts.html' %}
-    
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
-    
+
 </body>
 </html>

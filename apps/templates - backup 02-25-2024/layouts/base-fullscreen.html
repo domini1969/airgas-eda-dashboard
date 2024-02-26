@@ -56,8 +56,6 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-...your-integrity-code-here..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <link type="text/css" href="/static/assets/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 <link type="text/css" href="/static/assets/vendor/notyf/notyf.min.css" rel="stylesheet">
 <link type="text/css" href="/static/assets/vendor/fullcalendar/main.min.css" rel="stylesheet">
@@ -69,33 +67,15 @@
 <!-- Volt CSS -->
 <link type="text/css" href="/static/assets/css/volt.min.css" rel="stylesheet">
 
-<link type="text/css" href="/static/assets/css/custom.css" rel="stylesheet">
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 <body>
 
-    <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="/">
-            <img class="navbar-brand-dark" src="/static/assets/img/brand/light.svg" alt="Volt logo" /> <img class="navbar-brand-light" src="/static/assets/img/brand/dark.svg" alt="Volt logo" />
-        </a>
-        <div class="d-flex align-items-center">
-            <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
-
-    {% include 'includes/sidebar.html' %}
-
-    <main class="content">
-
-        {% include 'includes/navigation.html' %}
-
+    <main>
+        
         {% block content %}{% endblock content %}
-
-        {% include 'includes/footer.html' %}             
 
     </main>
 

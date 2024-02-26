@@ -33,7 +33,7 @@
          <div class="row justify-content-between align-items-center">
             <div class="d-flex justify-content-between w-100 flex-wrap">
                <div class="mb-3 mb-lg-0">
-                  <p class="mb-0 small pe-4">Hint: Enter search terms(s), for example argon, disposable respirators etc..</p>
+                  <p class="mb-0 small pe-4">Solr Search Configuration</p>
                </div>
             </div>
             <div class="py-2"></div>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="col-3 col-lg-3 d-flex justify-content-start">
-                        <button type="button" class="btn btn-secondary execute-btn" id="airgas-Search" data-action="load">Search</button>
+                        <button type="button" class="btn btn-secondary execute-btn" id="airgas-Config" data-action="load">Search</button>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 <script>
-function searchAirgas(action) {
+function configAirgas(action) {
     // Show loading spinner
     $('.loading-spinner').show();
     // Clear previous search results
@@ -90,7 +90,7 @@ function searchAirgas(action) {
     // AJAX request to your Flask route
     $.ajax({
         type: 'POST',
-        url: '/search_Airgas',
+        url: '/config_Airgas',
         data: {
             action: action,
             keywords: keywords
@@ -222,7 +222,7 @@ function searchAirgas(action) {
 }
 
 // Event handler for the execute button
-$('#airgas-Search').click(function () {
+$('#airgas-Config').click(function () {
     // Get the value of the keyword field
     var keyword = $('#keywords').val();
 
@@ -236,7 +236,7 @@ $('#airgas-Search').click(function () {
     // If not empty, proceed with the search
     console.log('airgas-Search clicked');
     // Call the function to execute the search
-    searchAirgas('search');
+    configAirgas('payload');
     // Expand the result div after each search execution
     $("#result0").show();
 });

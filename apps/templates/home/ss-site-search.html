@@ -2,7 +2,9 @@
 
 {% block title %} Search Eval Framework {% endblock %}
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+{% endblock stylesheets %}
 
 {% block content %}
 <!-- Breadcrumb starts -->
@@ -18,7 +20,7 @@
          </li>
          <li class="breadcrumb-item"><a href="#">Enterprise Search</a></li>
          <li class="breadcrumb-item"><a href="#">POC</a></li>
-         <li class="breadcrumb-item active" aria-current="page">Search eval framework</li>
+         <li class="breadcrumb-item active" aria-current="page">Site Search</li>
       </ol>
    </nav>
 </div>
@@ -57,9 +59,9 @@
 
             <div class="py-1">
                <!-- Add the spinner here -->
-               <div class="loading-spinner">
-                  Loading&nbsp;<i class="fas fa-spinner fa-spin"></i>
-               </div>
+                <div class="loading-spinner" style="display: none;">
+                    <b class="breadcrumb-item">Loading&nbsp;</b><i class="fas fa-spinner fa-spin"></i>
+                </div>
                <div class="row mb-4 ..."></div>
                   <div class=" table-settings mb-3 shadow" id="result0">
                      <table id="data0" class="display nowrap" cellspacing="0" width="100%">
@@ -77,6 +79,8 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script>
 function searchAirgas(action) {
     // Show loading spinner
@@ -131,8 +135,8 @@ function searchAirgas(action) {
                             scrollX: true,
                             columns: [
                                 { data: 'Position', orderable: true, searchable: true, title: "Position"},
-                                { data: 'partNumber_text_en_splitting_tight', orderable: true, searchable: true, title: "Airgas Part #"},
-                                { data: 'shortDescription_text_general', orderable: true, searchable: true, title: "Product Name"},
+                                { data: 'partNumber', orderable: true, searchable: true, title: "Airgas Part #"},
+                                { data: 'shortDescription_text_en', orderable: true, searchable: true, title: "Product Name"},
                             ],
                             destroy: true,
                             processing: true,
@@ -229,7 +233,7 @@ $('#airgas-Search').click(function () {
     // Check if the keyword is empty
     if (keyword.trim() === '') {
         // If empty, show an alert message
-        alert('Please enter at least one keyword.');
+        alert('Please enter a keyword.');
         return false; // Prevent form submission
     }
 

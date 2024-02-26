@@ -1,0 +1,183 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Signal Boosting Demo {% endblock %}
+
+<!-- Include DataTables CSS -->
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<style>
+    /* CSS to hide and show the card */
+    .hide-card {
+        display: none;
+    }
+    .show-card {
+        display: block;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<!-- Breadcrumb starts -->
+<div class="py-1">
+   <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+      <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+         <li class="breadcrumb-item">
+            <a href="#">
+               <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+               </svg>
+            </a>
+         </li>
+         <li class="breadcrumb-item"><a href="#">Enterprise Search</a></li>
+         <li class="breadcrumb-item"><a href="#">POC</a></li>
+         <li class="breadcrumb-item active" aria-current="page">Null Search Results</li>
+      </ol>
+   </nav>
+</div>
+<!-- Main content section -->
+<div class="container mt-0">
+    <!-- Tab content -->
+    <div class="tab-pane fade show active" id="tab0" role="tabpanel" aria-labelledby="tab0-tab">
+       <!-- Content for Tab 1 -->
+       <div class="master-div">
+          <div class="table-settings mb-3">
+             <div class="row justify-content-between align-items-center">
+                <div class="d-flex justify-content-between w-100 flex-wrap">
+                   <div class="mb-3 mb-lg-0">
+                      <p class="mb-0 small pe-4"><b>Improving Search Relevance with Stemming and Lemmatization.</b> </p>
+                      <p class="mb-0 small pe-4">Stemming is the process of reducing words to their root form, which helps to improve search recall by capturing variations of a word. Lemmatization is a more sophisticated technique that also reduces words to their base or dictionary form, preserving the meaning of words, which can lead to more accurate search results by considering different inflections of a word.</p>
+                   </div>
+                </div>
+                <div class="py-2"></div>
+                <div class="table-settings mb-3">
+                    <div class="row">
+                        <div class="col-6 col-lg-6 d-md-flex">
+                            <div class="input-group me-2 me-lg-3 fmxw-500">
+                                <span class="input-group-text">
+                                    <svg class="icon icon-xs" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                                <input type="text" id="keyword" name="keyword" value="{{ keyword }}" class="form-control" placeholder="Enter search term(s).." required>
+                            </div>
+                        </div>
+                        <div class="col-2 col-lg-2 d-flex justify-content-start">
+                            <button type="button" id="airgas-newSearch" class="btn btn-secondary" data-action="load" data-bs-placement="bottom">Search</button>
+                        </div>
+                    </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- Add more tab content divs as needed -->
+    </div>
+    <!-- Tab content ends -->
+
+    <div class="loading-spinner" style="display: none;">
+        <b class="breadcrumb-item">Loading&nbsp;</b><i class="fas fa-spinner fa-spin"></i>
+    </div>
+
+    <!-- Card for displaying search results -->
+    <div class="row justify-content-center mt-4 status-card hide-card" id="statusCard">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h7 class="card-title">Results</h7>
+                    <!-- Wrap the search results table with the #searchResults div -->
+                    <div id="searchResults">
+                        <!-- Your search results table code goes here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card ends -->
+</div>
+<!-- Main content section ends -->
+
+<div class="w-100 p-9"></div>
+{% endblock content %}
+
+<!-- Include DataTables JS -->
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    // Function to perform new search
+    function performNewSearch() {
+        // Show loading spinner
+        $('.loading-spinner').show();
+
+        // AJAX request to perform new search
+        $.ajax({
+            type: 'POST',
+            url: '/newSearch_Airgas', // Replace with the appropriate URL for performing a new search
+            data: {
+                keyword: $('#keyword').val() // Get the keyword from the input field
+            },
+            success: function (response) {
+                console.log(response);
+                // Handle the success case
+                if (response.search_results && response.search_results.length > 0) {
+                    // Construct HTML for search results
+                    var html = '';
+                    response.search_results.forEach(function(result) {
+                        html += '<tr>';
+                        html += '<td>' + result.partNumber + '</td>';
+                        html += '<td>' + result.shortDescription_text_en + '</td>';
+                        html += '<td>' + result.score + '</td>';
+                        html += '</tr>';
+                    });
+                    // Display the search results in the appropriate place
+                    $('#searchResults').html('<table class="table table-flush" id="datatable">' +
+                        '<thead class="thead-light">' +
+                        '<tr>' +
+                        '<th>Airgas Part#</th>' +
+                        '<th>Product Name</th>' +
+                        '<th>Score</th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody>' + html + '</tbody>' +
+                        '</table>');
+
+                    // Initialize DataTables
+                    $('#datatable').DataTable({
+                        autoWidth: false
+                    });
+
+                    // Show the card with search results
+                    $('#statusCard').removeClass('hide-card').addClass('show-card');
+                } else {
+                    // Display an error message if there are no search results
+                    $('#searchResults').html('<div class="text-center text-danger">No search results found.</div>');
+                    // Hide the card if no results found
+                    $('#statusCard').removeClass('show-card').addClass('hide-card');
+                }
+
+                $('.loading-spinner').hide();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // Handle the error case
+                $('#searchResults').html('<div class="text-center text-danger">Error occurred while performing the search.</div>');
+                console.error('Error:', textStatus, errorThrown);
+                $('.loading-spinner').hide();
+            }
+        });
+    }
+
+    // Event handler for the new search button
+    $('#airgas-newSearch').click(function () {
+        console.log('airgas-newSearch clicked');
+        // Get the value of the keyword field
+        var keyword = $('#keyword').val();
+
+        // Check if the keyword is empty
+        if (keyword.trim() === '') {
+            // If empty, show an alert message
+            alert('Please enter a keyword.');
+            return false; // Prevent form submission
+        }
+        performNewSearch();
+    });
+</script>
+{% endblock javascripts %}

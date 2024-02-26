@@ -33,24 +33,14 @@
          <div class="row justify-content-between align-items-center">
             <div class="d-flex justify-content-between w-100 flex-wrap">
                <div class="mb-3 mb-lg-0">
-                  <p class="mb-0 small pe-4">Hint: Enter search terms(s), for example argon, disposable respirators etc..</p>
+                  <p class="mb-0 small pe-4">Warning. This will wipe the existing solr data.</p>
                </div>
             </div>
             <div class="py-2"></div>
             <div class="table-settings mb-3">
                 <div class="row justify-content-between align-items-center">
-                    <div class="col-10 col-lg-9 d-md-flex">
-                        <div class="input-group me-2 me-lg-3 fmxw-1000">
-                            <span class="input-group-text">
-                                <svg class="icon icon-xs" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
-                                </svg>
-                            </span>
-                            <textarea class="form-control" name="keywords" value="{{ keywords }}" rows="1" id="keywords" placeholder="Enter comma separated keywords..." required></textarea>
-                        </div>
-                    </div>
                     <div class="col-3 col-lg-3 d-flex justify-content-start">
-                        <button type="button" class="btn btn-secondary execute-btn" id="airgas-Search" data-action="load">Search</button>
+                        <button type="button" class="btn btn-secondary execute-btn" id="airgas-Delete" data-action="load">Search</button>
                     </div>
                 </div>
             </div>
@@ -78,7 +68,7 @@
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 <script>
-function searchAirgas(action) {
+function deleteAirgas(action) {
     // Show loading spinner
     $('.loading-spinner').show();
     // Clear previous search results
@@ -90,7 +80,7 @@ function searchAirgas(action) {
     // AJAX request to your Flask route
     $.ajax({
         type: 'POST',
-        url: '/search_Airgas',
+        url: '/delete_Airgas',
         data: {
             action: action,
             keywords: keywords
@@ -222,7 +212,7 @@ function searchAirgas(action) {
 }
 
 // Event handler for the execute button
-$('#airgas-Search').click(function () {
+$('#airgas-Delete').click(function () {
     // Get the value of the keyword field
     var keyword = $('#keywords').val();
 
@@ -236,7 +226,7 @@ $('#airgas-Search').click(function () {
     // If not empty, proceed with the search
     console.log('airgas-Search clicked');
     // Call the function to execute the search
-    searchAirgas('search');
+    deleteAirgas('delete');
     // Expand the result div after each search execution
     $("#result0").show();
 });

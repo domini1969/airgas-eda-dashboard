@@ -1,0 +1,43 @@
+{% extends "layouts/base-presentation.html" %}
+
+{% block title %} Presentation {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    
+    <main>
+
+        <!-- Hero -->
+        <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="fw-bolder">Search Dashboard</h1>
+                        <h2 class="lead fw-normal text-muted mb-5">Enterprise Search</h2>
+                        <!-- Button Modal -->
+                        <div class="d-flex justify-content-center mb-5">
+                            <a href="/dashboard.html" class="btn btn-secondary d-inline-flex align-items-center me-4">
+                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd"></path></svg>
+                                Dashboard
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-center flex-column mb-6 mb-lg-5">
+                            <a href="https://domini.com" target="_blank">
+                                <span class="text-muted font-small">
+                                    &copy; Airgas, E-Business
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
