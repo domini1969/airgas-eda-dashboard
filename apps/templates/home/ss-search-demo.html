@@ -13,6 +13,9 @@
     .show-card {
         display: block;
     }
+    .text-wrap {
+    white-space: normal;
+}
 </style>
 {% endblock stylesheets %}
 
@@ -124,7 +127,7 @@
                     response.search_results.forEach(function(result) {
                         html += '<tr>';
                         html += '<td>' + result.partNumber + '</td>';
-                        html += '<td>' + result.shortDescription_text_en + '</td>';
+                        html += '<td class="text-wrap">' + result.shortDescription_text_en + '</td>';
                         html += '<td>' + result.score + '</td>';
                         html += '</tr>';
                     });
